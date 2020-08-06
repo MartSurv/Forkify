@@ -4,7 +4,7 @@ const renderRecipe = recipe => {
     const markup =
         `
     <li>
-        <a class="results__link results__link--active" href="#${recipe.recipe_id}">
+        <a class="results__link results__link" href="#${recipe.recipe_id}">
             <figure class="results__fig">
                 <img src="${recipe.image_url}" alt="${recipe.title}">
             </figure>
@@ -18,7 +18,7 @@ const renderRecipe = recipe => {
     elements.searchResultList.insertAdjacentHTML('beforeend', markup);
 }
 
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
     if (title.length > limit) {
         let shortTitle = title.substring(0, limit);
         shortTitle = shortTitle.substring(0, Math.min(shortTitle.length, shortTitle.lastIndexOf(' ')))
@@ -37,6 +37,14 @@ export const clearInput = () => {
 export const clearResults = () => {
     elements.searchResultList.innerHTML = '';
     elements.searchResultPages.innerHTML = '';
+};
+
+export const highlightSelected = id => {
+    const resultsArr = document.querySelectorAll('.results__link');
+    resultsArr.forEach(el => {
+        el.classList.remove('results__link--active');
+    });
+    document.querySelector(`.results__link[href*="#${id}"]`).classList.add('results__link--active');
 };
 
 const showButton = (page, type) => `

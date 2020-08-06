@@ -3,7 +3,11 @@ export const elements = {
     searchForm: document.querySelector('.search'),
     searchResults: document.querySelector('.results'),
     searchResultList: document.querySelector('.results__list'),
-    searchResultPages: document.querySelector('.results__pages')
+    searchResultPages: document.querySelector('.results__pages'),
+    recipe: document.querySelector('.recipe'),
+    shopping: document.querySelector('.shopping__list'),
+    likesMenu: document.querySelector('.likes__field'),
+    likesList: document.querySelector('.likes__list')
 }
 
 export const elementsClasses = {
@@ -19,9 +23,5 @@ export const renderLoader = (parent, mode) => {
         </svg>
     </div>
 `;
-    if (mode === 'start') {
-    parent.insertAdjacentHTML('afterbegin', loader);
-    } else if (mode === 'end') {
-        parent.removeChild(parent.firstElementChild);
-    }
+    mode === 'start' ? parent.insertAdjacentHTML('afterbegin', loader) : parent.removeChild(parent.firstElementChild);
 };
